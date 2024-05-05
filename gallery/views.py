@@ -13,3 +13,6 @@ from .forms import ProductForm
 # delete_product(request, pk): it deletes a product; if post request is made, 
 # it deletes and redirectes to product list; otherwise displays a confirmation page for deleting
 
+def product_list(request):
+    products =Product.objects.all()
+    return render(request, 'gallery/index.html', {'products':products})
