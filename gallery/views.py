@@ -31,3 +31,12 @@ def edit_product(request, pk):
         form = ProductForm(instance=product)
     return render(request, 'WanderWords/edit.html',{'form':form})
 
+def delete_product(request, pk):
+    product = Product.objects.get(pk=pk)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('product_list')
+    return render(request, 'WanderWords/delete.html',{'product':product})
+
+def home(request):
+    return HttpResponse('Hello, WOrld!')
