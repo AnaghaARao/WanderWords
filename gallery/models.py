@@ -1,5 +1,7 @@
 from django.db import models
 
+# Here we have created a Product table with name, 
+# description, image, created_at, and updated_at fields in the table.
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=255)
