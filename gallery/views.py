@@ -15,4 +15,15 @@ from .forms import ProductForm
 
 def product_list(request):
     products =Product.objects.all()
-    return render(request, 'gallery/index.html', {'products':products})
+    return render(request, 'WanderWords/index.html', {'products':products})
+
+def edit_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'WanderWords/edit.html',{'form':form})
