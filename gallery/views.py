@@ -17,6 +17,10 @@ def product_list(request):
     products =Product.objects.all()
     return render(request, 'WanderWords/index.html', {'products':products})
 
+def product_detail(request, pk):
+    product = Product.objects.get(pk=pk)
+    return render(request, 'WanderWords/index2.html', {'product':product})
+
 def edit_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
