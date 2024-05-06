@@ -14,11 +14,11 @@ from .form import ProductForm
 
 def product_list(request):
     products =Product.objects.all()
-    return render(request, 'WanderWords/index.html', {'products':products})
+    return render(request, 'gallery/template/gallery/index.html', {'products':products})
 
 def product_detail(request, pk):
     product = Product.objects.get(pk=pk)
-    return render(request, 'WanderWords/index2.html', {'product':product})
+    return render(request, 'gallery/template/gallery/index2.html', {'product':product})
 
 def edit_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -29,14 +29,14 @@ def edit_product(request, pk):
             return redirect('product_list')
     else:
         form = ProductForm(instance=product)
-    return render(request, 'WanderWords/edit.html',{'form':form})
+    return render(request, 'gallery/template/gallery/edit.html',{'form':form})
 
 def delete_product(request, pk):
     product = Product.objects.get(pk=pk)
     if request.method == 'POST':
         product.delete()
         return redirect('product_list')
-    return render(request, 'WanderWords/delete.html',{'product':product})
+    return render(request, 'gallery/template/gallery/delete.html',{'product':product})
 
 def home(request):
-    return HttpResponse('Hello, WOrld!')
+    return HttpResponse('Hello, World!')
